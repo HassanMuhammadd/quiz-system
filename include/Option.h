@@ -1,3 +1,6 @@
+#ifndef OPTION_H
+#define OPTION_H
+
 #include <string>
 
 using namespace std;
@@ -14,3 +17,5 @@ class Option {
 		string getText() const;
 		bool isCorrect() const;
 };
+
+#endif // OPTION_H

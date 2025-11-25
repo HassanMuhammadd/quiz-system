@@ -1,3 +1,6 @@
+#ifndef STUDENT_H
+#define STUDENT_H
+
 #include "User.h"
 #include "Quiz.h"
 
@@ -20,3 +23,5 @@ class Student : public User {
 
 	static std::vector<Student*>& getAllStudents();
 };
+
+#endif // STUDENT_H

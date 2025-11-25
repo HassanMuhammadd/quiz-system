@@ -1,3 +1,6 @@
+#ifndef TEACHER_H
+#define TEACHER_H
+
 #include "User.h"
 #include "Quiz.h"
 
@@ -18,3 +21,5 @@ class Teacher : public User {
 
 	static vector<Teacher*>& getAllTeachers();
 };
+
+#endif // TEACHER_H
