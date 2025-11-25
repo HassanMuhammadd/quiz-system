@@ -1,0 +1,4 @@
+.vscode
+.vscode/*
+include/build
+src/build
