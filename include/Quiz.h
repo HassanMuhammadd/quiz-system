@@ -1,3 +1,6 @@
+#ifndef QUIZ_H
+#define QUIZ_H
+
 #include "Question.h"
 
 #include <string>
@@ -37,3 +40,5 @@ class Quiz {
 	vector<Question*> getQuestions();
 
 };
+
+#endif // QUIZ_H
