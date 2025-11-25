@@ -33,6 +33,8 @@ void unpublishQuiz(int id) {
 	for (int i = 0; i < Quiz::allQuizzes.size(); i++) {
 		if (Quiz::allQuizzes[i]->getId() == id) {
 			Quiz::allQuizzes.erase(Quiz::allQuizzes.begin() + i);
+			delete Quiz::allQuizzes[i];
+			Quiz::allQuizzes[i] = nullptr;
 			break;
 		}
 	}
