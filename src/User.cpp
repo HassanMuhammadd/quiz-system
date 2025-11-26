@@ -17,10 +17,9 @@ string User::hashPassword(string password) {
 	return ss.str();
 }
 
-User::User(string name, string email, string password)
-	: id(nextId++), name(name), email(email), password(hashPassword(password)) {}
+User::User(int id, Role role, string name, string email, string password)
+	: id(id), role(role), name(name), email(email), password(hashPassword(password)) {}
 
-int User::getId() { return id; }
 string User::getName() { return name; }
 string User::getEmail() { return email; }
 string User::getPassword() { return password; }
@@ -40,4 +39,6 @@ User& User::login(string email, string password) {
 	}
 }
 
+int User::getId() { return id; }
+User::Role User::getRole() { return role; }
 

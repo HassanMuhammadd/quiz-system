@@ -23,21 +23,25 @@ class Quiz {
 	public:
 	static vector<Quiz*> allQuizzes;
 
-	// Constructor accepting date/time components from user input
 	Quiz(int timeLimitInMinutes, string title);
-
 
 	system_clock::time_point getPublishAt();
 	int getId();
 
+	void setTimeLimitInMinutes(int timeLimitInMinutes);
+	void setTitle(string title);
+
 	static vector<Quiz*>& getAllQuizzes();
+	static Quiz* findQuiz(int id);
+
+	void displayQuiz();
 
 	void publishQuiz(int year, int month, int day, int hour, int minute);
-	void unpublishQuiz(int id);
+
 
 	Quiz& addQuestion(string text, float points);
-	void removeQuestion(int id);
-	vector<Question*> getQuestions();
+	Quiz& removeQuestion(int questionId);
+	vector<Question*>& getQuestions();
 
 };
 

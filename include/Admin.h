@@ -8,16 +8,18 @@
 #include <vector>
 
 class Admin : public User {
+	inline static int nextId = 1;
 private:
 
-	template<class T>
-	T& createUserOfType(string name, string email, string password, vector<T*>& storage);
 
 public:
 	Admin(string name, string email, string password);
 
-	User& createUser(string name, string email, string password);
+	template<class T>
+	T& createUserOfType(string name, string email, string password, vector<T*>& storage);
 
+	template<class T>
+	bool deleteUserOfType(int id, vector<T*>& storage);
 
 };
 

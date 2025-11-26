@@ -17,3 +17,18 @@ bool Question::checkAnswer(string studentAnswer) {
 	}
 	return false;
 }
+
+float Question::getPoints() { return points; }
+
+string Question::getText() { return text; }
+
+int Question::getId() { return id; }
+
+// Here, we're only returning the text and keeping the score hidden for security
+vector<string> Question::getOptions() {
+	vector<string> optionsText;
+	for (const Option *option : options) {
+		optionsText.push_back(option->getText());
+	}
+	return optionsText;
+}

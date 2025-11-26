@@ -1,5 +1,7 @@
 #include "Quiz.h"
 
+#include <iostream>
+
 vector<Quiz*> Quiz::allQuizzes;
 
 // Helper function to convert date/time components to time_point
@@ -27,11 +29,13 @@ int Quiz::getId() { return id; }
 
 vector<Quiz*>& Quiz::getAllQuizzes() { return allQuizzes; }
 
+void Quiz::setTimeLimitInMinutes(int timeLimitInMinutes) { this->timeLimitInMinutes = timeLimitInMinutes; }
+void Quiz::setTitle(string title) { this->title = title; }
+
 // add the publishAt time to the quiz
 void Quiz::publishQuiz(int year, int month, int day, int hour, int minute) {
 	this->publishAt = createTimePoint(year, month, day, hour, minute);
 }
-
 
 
 Quiz& Quiz::addQuestion(string text, float points) {
@@ -39,3 +43,35 @@ Quiz& Quiz::addQuestion(string text, float points) {
 	questions.push_back(question);
 	return *this;
 }
+
+Quiz& Quiz::removeQuestion(int questionId) {
+	for (auto it = questions.begin(); it != questions.end(); ++it) {
+		if((*it)->getId() == questionId) {
+			questions.erase(it);
+			delete *it;
+			return *this;
+		}
+	}
+	cout << "\n===Question not found===\n";
+	return *this;
+}
+
+vector<Question*>& Quiz::getQuestions() { return questions; }
+
+Quiz* Quiz::findQuiz(int id) {
+	for (Quiz *quiz : allQuizzes) {
+		if (quiz->getId() == id) {
+			return quiz;
+		}
+	}
+	cout << "\n===Quiz not found===\n";
+	return nullptr;
+}
+
+void Quiz::displayQuiz() {
+	time_t publishAt_timeT = system_clock::to_time_t(publishAt);
+	cout << "Title: " << title << endl;
+	cout << "Time Limit: " << timeLimitInMinutes << " minutes" << endl;
+	cout << "Available At: " << publishAt_timeT << endl;
+}
+
