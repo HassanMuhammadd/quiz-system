@@ -1,3 +1,6 @@
+#ifndef QUESTION_H
+#define QUESTION_H
+
 #include "Option.h"
 
 #include <vector>
@@ -17,3 +20,5 @@ class Question {
 	bool checkAnswer(string studentAnswer);
 
 };
+
+#endif // QUESTION_H

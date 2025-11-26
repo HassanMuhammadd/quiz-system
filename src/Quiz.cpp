@@ -16,27 +16,23 @@ system_clock::time_point createTimePoint(int year, int month, int day, int hour,
 	return system_clock::from_time_t(timeT);
 }
 
-Quiz::Quiz(int timeLimitInMinutes, string title, int year, int month, int day, int hour, int minute)
-	: id(nextId++), timeLimitInMinutes(timeLimitInMinutes), title(title), activeAt(createTimePoint(year, month, day, hour, minute)) {}
+Quiz::Quiz(int timeLimitInMinutes, string title)
+	: id(nextId++), timeLimitInMinutes(timeLimitInMinutes), title(title) {
+		allQuizzes.push_back(this);
+	}
 
 
-system_clock::time_point Quiz::getActiveAt() { return activeAt; }
+system_clock::time_point Quiz::getPublishAt() { return publishAt; }
 int Quiz::getId() { return id; }
 
 vector<Quiz*>& Quiz::getAllQuizzes() { return allQuizzes; }
 
-void publishQuiz(Quiz quiz) {
-	Quiz::allQuizzes.push_back(&quiz);
+// add the publishAt time to the quiz
+void Quiz::publishQuiz(int year, int month, int day, int hour, int minute) {
+	this->publishAt = createTimePoint(year, month, day, hour, minute);
 }
 
-void unpublishQuiz(int id) {
-	for (int i = 0; i < Quiz::allQuizzes.size(); i++) {
-		if (Quiz::allQuizzes[i]->getId() == id) {
-			Quiz::allQuizzes.erase(Quiz::allQuizzes.begin() + i);
-			break;
-		}
-	}
-}
+
 
 Quiz& Quiz::addQuestion(string text, float points) {
 	Question *question = new Question(text, points);
