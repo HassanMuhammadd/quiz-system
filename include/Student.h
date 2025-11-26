@@ -10,6 +10,8 @@
 class Student : public User {
 	inline static int nextId = 1;
 	public:
+
+	// self registering instance list
 	static vector<Student*> allStudents;
 
 	Student(string name, string email, string password);

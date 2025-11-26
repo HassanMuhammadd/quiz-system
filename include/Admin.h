@@ -9,10 +9,10 @@
 
 class Admin : public User {
 	inline static int nextId = 1;
-private:
 
 
-public:
+	public:
+	static vector<Admin*> allAdmins;
 	Admin(string name, string email, string password);
 
 	template<class T>
@@ -21,6 +21,7 @@ public:
 	template<class T>
 	bool deleteUserOfType(int id, vector<T*>& storage);
 
+	static vector<Admin*>& getAllAdmins();
 };
 
 #endif // ADMIN_H
