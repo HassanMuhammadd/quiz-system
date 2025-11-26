@@ -3,7 +3,13 @@
 #include <iostream>
 
 Admin::Admin(string name, string email, string password)
-	: User(nextId++, User::ADMIN, name, email, password) {}
+	: User(nextId++, User::ADMIN, name, email, password) {
+		allAdmins.push_back(this);
+	}
+
+vector<Admin*> Admin::allAdmins;
+
+vector<Admin*>& Admin::getAllAdmins() { return allAdmins; }
 
 // Template implementation
 template<class T>
@@ -13,9 +19,6 @@ T& Admin::createUserOfType(string name, string email, string password, vector<T*
 	return *obj;
 }
 
-// Explicit template instantiations for the types we use
-template Teacher& Admin::createUserOfType<Teacher>(string, string, string, vector<Teacher*>&);
-template Student& Admin::createUserOfType<Student>(string, string, string, vector<Student*>&);
 
 // Template implementation
 template<class T>

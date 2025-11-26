@@ -30,14 +30,11 @@ void User::setPassword(string password) {
 	this->password = hashPassword(password);
 }
 
-User& User::login(string email, string password) {
-	if(this->email == email && this->password == hashPassword(password))
-		return *this;
-	else {
-		cout << "Invalid email or password" << endl;
-		return *this;
-	}
+bool User::checkPassword(string password) {
+	return this->password == hashPassword(password);
 }
+
+
 
 int User::getId() { return id; }
 User::Role User::getRole() { return role; }

@@ -2,6 +2,7 @@
 #define USER_H
 
 #include <string>
+
 using namespace std;
 
 class User {
@@ -32,7 +33,7 @@ protected:
 	void setEmail(string email);
 	void setPassword(string password);
 
-	User& login(string email, string password);
+	bool checkPassword(string password);
 
 	protected:
 	string hashPassword(string password);

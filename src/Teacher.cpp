@@ -52,4 +52,3 @@ void Teacher::viewStudentsResults(int quizId) {
 		cout << "\n==========\n";
 	}
 }
-
