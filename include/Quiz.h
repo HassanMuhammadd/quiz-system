@@ -15,7 +15,7 @@ class Quiz {
 	int id;
 	int timeLimitInMinutes;
 	string title;
-	system_clock::time_point activeAt;
+	system_clock::time_point publishAt;
 	vector<Question*> questions;
 
 	inline static int nextId = 1;
@@ -24,15 +24,15 @@ class Quiz {
 	static vector<Quiz*> allQuizzes;
 
 	// Constructor accepting date/time components from user input
-	Quiz(int timeLimitInMinutes, string title, int year, int month, int day, int hour = 0, int minute = 0);
+	Quiz(int timeLimitInMinutes, string title);
 
 
-	system_clock::time_point getActiveAt();
+	system_clock::time_point getPublishAt();
 	int getId();
 
 	static vector<Quiz*>& getAllQuizzes();
 
-	void publishQuiz(Quiz quiz);
+	void publishQuiz(int year, int month, int day, int hour, int minute);
 	void unpublishQuiz(int id);
 
 	Quiz& addQuestion(string text, float points);
