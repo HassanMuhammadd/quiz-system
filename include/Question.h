@@ -19,6 +19,11 @@ class Question {
 	Question& addOption(string text, bool isCorrect);
 	bool checkAnswer(string studentAnswer);
 
+	string getText();
+	float getPoints();
+	int getId();
+
+	vector<string> getOptions();
 };
 
 #endif // QUESTION_H

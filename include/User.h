@@ -5,16 +5,25 @@
 using namespace std;
 
 class User {
+public:
+	enum Role {
+		ADMIN,
+		TEACHER,
+		STUDENT
+	};
+
+protected:
 	const int id;
+	Role role;
 	string name;
 	string email;
 	string password;
-	inline static int nextId = 1;
 
 	public:
-	User(string name, string email, string password);
+	User(int id, Role role, string name, string email, string password);
 
 	int getId();
+	Role getRole();
 	string getName();
 	string getEmail();
 	string getPassword();
