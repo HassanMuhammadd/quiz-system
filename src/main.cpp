@@ -4,11 +4,8 @@
 using namespace std;
 
 int main(){
-	App app;
-
 	Admin* admin = new Admin("a", "a", "a");
-
+	App app;
 	app.run();
-
 	return 0;
 }

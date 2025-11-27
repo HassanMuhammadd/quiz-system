@@ -18,6 +18,8 @@ public:
     template<class T>
     T* takeLoginInput(vector<T*>& users);
 
+    static void clearWrongInput();
+
     void run();
 };
 

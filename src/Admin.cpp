@@ -1,4 +1,5 @@
 #include "Admin.h"
+#include "App.h"
 
 #include <iostream>
 
@@ -49,6 +50,12 @@ void Admin::displayMenu() {
 		cout << "5. Logout\n";
 		cout << "Enter your choice: ";
 		cin >> choice;
+
+		if(cin.fail()) {
+			App::clearWrongInput();
+			continue;
+		}
+
 		switch (choice) {
 			case 1: {
 				prepareCreateUserOfType<Teacher>(Teacher::allTeachers);
@@ -99,5 +106,11 @@ bool Admin::prepareDeleteUserOfType(vector<T*>& storage) {
 	int id;
 	cout << "Enter ID: ";
 	cin >> id;
+
+	if(cin.fail()) {
+		App::clearWrongInput();
+		return false;
+	}
+
 	return deleteUserOfType<T>(id, storage);
 }

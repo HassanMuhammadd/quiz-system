@@ -1,4 +1,5 @@
 #include "Student.h"
+#include "App.h"
 
 #include <iostream>
 
@@ -64,6 +65,11 @@ void Student::startQuiz() {
 	cout << "Enter the quiz ID you want to take: ";
 	cin >> quizId;
 
+	if(cin.fail()) {
+		App::clearWrongInput();
+		return;
+	}
+
 	Quiz *quiz = Quiz::findQuiz(quizId);
 
 	if (quiz == nullptr) {
@@ -114,6 +120,13 @@ vector<string> Student::solveQuizQuestions(Quiz* quiz) {
 		int answer;
 		cout << "Enter your choice: ";
 		cin >> answer;
+
+		if(cin.fail()) {
+			App::clearWrongInput();
+			i--;
+			continue;
+		}
+
 		if(answer < 1 || answer > options.size()) {
 			cout << "Invalid choice, try again\n";
 			i--;
@@ -150,6 +163,12 @@ void Student::displayMenu() {
 		cout << "4. Logout\n";
 		cout << "Enter your choice: ";
 		cin >> choice;
+
+		if(cin.fail()) {
+			App::clearWrongInput();
+			continue;
+		}
+
 		switch (choice) {
 			case 1: {
 				startQuiz();
@@ -163,6 +182,12 @@ void Student::displayMenu() {
 				int quizId;
 				cout << "Enter the quiz ID you want to view results in: ";
 				cin >> quizId;
+
+				if(cin.fail()) {
+					App::clearWrongInput();
+					continue;
+				}
+
 				viewResultsInAQuiz(quizId);
 				break;
 			}

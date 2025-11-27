@@ -1,4 +1,5 @@
 #include "Teacher.h"
+#include "App.h"
 
 #include <iostream>
 
@@ -67,6 +68,12 @@ void Teacher::displayMenu() {
 		cout << "Enter your choice: ";
 
 		cin >> choice;
+
+		if(cin.fail()) {
+			App::clearWrongInput();
+			continue;
+		}
+
 		switch (choice) {
 			case 1: {
 				prepareCreateQuiz();
@@ -103,11 +110,22 @@ void Teacher::prepareCreateQuiz() {
 	cout << "Enter time limit in minutes: ";
 	cin >> timeLimitInMinutes;
 	cout << "Enter title: ";
+
+	if(cin.fail()) {
+		App::clearWrongInput();
+		return;
+	}
+
 	cin.ignore();
 	getline(cin, title);
 	cout << "Enter publish time (year month day hour minute): ";
 	int year, month, day, hour, minute;
 	cin >> year >> month >> day >> hour >> minute;
+
+	if(cin.fail()) {
+		App::clearWrongInput();
+		return;
+	}
 
 	Quiz* quiz = createQuiz(timeLimitInMinutes, title, year, month, day, hour, minute);
 	addQuestions(quiz->getId());
@@ -119,14 +137,31 @@ void Teacher::prepareEditQuiz() {
 	int id;
 	cout << "Enter Quiz ID: ";
 	cin >> id;
+
+	if(cin.fail()) {
+		App::clearWrongInput();
+		return;
+	}
+
 	cout << "\n1. Update general info\n2. Add question\n";
 	cin >> choice;
+
+	if(cin.fail()) {
+		App::clearWrongInput();
+		return;
+	}
+
 	if(choice == 1) {
 		int timeLimitInMinutes;
 		string title;
 
 		cout << "Enter time limit in minutes: ";
 		cin >> timeLimitInMinutes;
+
+		if(cin.fail()) {
+			App::clearWrongInput();
+			return;
+		}
 
 		cout << "Enter title: ";
 		cin.ignore();
@@ -135,6 +170,11 @@ void Teacher::prepareEditQuiz() {
 		cout << "Enter publish time (year month day hour minute): ";
 		int year, month, day, hour, minute;
 		cin >> year >> month >> day >> hour >> minute;
+
+		if(cin.fail()) {
+			App::clearWrongInput();
+			return;
+		}
 
 		editQuiz(id, timeLimitInMinutes, title, year, month, day, hour, minute);
 		}
@@ -149,6 +189,12 @@ void Teacher::prepareDeleteQuiz() {
 	int id;
 	cout << "Enter id: ";
 	cin >> id;
+
+	if(cin.fail()) {
+		App::clearWrongInput();
+		return;
+	}
+
 	deleteQuiz(id);
 }
 
@@ -156,6 +202,12 @@ void Teacher::prepareViewStudentsResults() {
 	int quizId;
 	cout << "Enter quiz id: ";
 	cin >> quizId;
+
+	if(cin.fail()) {
+		App::clearWrongInput();
+		return;
+	}
+
 	viewStudentsResults(quizId);
 }
 
@@ -181,6 +233,12 @@ void Teacher::addQuestions(int id) {
 		if(text == "1") break;
 		cout << "Enter score: ";
 		cin >> score;
+
+		if(cin.fail()) {
+			App::clearWrongInput();
+			return;
+		}
+
 		Question *question = quiz->addQuestion(text, score);
 		string optionText;
 		bool isCorrect;
