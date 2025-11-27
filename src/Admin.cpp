@@ -11,22 +11,21 @@ vector<Admin*> Admin::allAdmins;
 
 vector<Admin*>& Admin::getAllAdmins() { return allAdmins; }
 
-// Template implementation
 template<class T>
-T& Admin::createUserOfType(string name, string email, string password, vector<T*>& storage) {
+T* Admin::createUserOfType(string name, string email, string password, vector<T*>& storage) {
+
 	T* obj = new T(name, email, password);
 	storage.push_back(obj);
-	return *obj;
+	return obj;
 }
 
-
-// Template implementation
 template<class T>
 bool Admin::deleteUserOfType(int id, vector<T*>& storage) {
 	for (auto it = storage.begin(); it != storage.end(); ++it) {
 		if ((*it)->getId() == id) {
 			delete *it;
 			storage.erase(it);
+			cout << "\n===User deleted===\n";
 			return true;
 		}
 	}
@@ -38,5 +37,67 @@ bool Admin::deleteUserOfType(int id, vector<T*>& storage) {
 template bool Admin::deleteUserOfType<Teacher>(int, vector<Teacher*>&);
 template bool Admin::deleteUserOfType<Student>(int, vector<Student*>&);
 
+void Admin::displayMenu() {
+	int choice;
+	bool finished = false;
+	while (true) {
+		cout << "\n===Welcome " << this->getName() << "===\n";
+		cout << "1. Create Teacher\n";
+		cout << "2. Create Student\n";
+		cout << "3. Delete Teacher\n";
+		cout << "4. Delete Student\n";
+		cout << "5. Logout\n";
+		cout << "Enter your choice: ";
+		cin >> choice;
+		switch (choice) {
+			case 1: {
+				prepareCreateUserOfType<Teacher>(Teacher::allTeachers);
+				break;
+			}
+			case 2: {
+				prepareCreateUserOfType<Student>(Student::allStudents);
+				break;
+			}
+			case 3: {
+				prepareDeleteUserOfType<Teacher>(Teacher::allTeachers);
+				break;
+			}
+			case 4: {
+				prepareDeleteUserOfType<Student>(Student::allStudents);
+				break;
+			}
+			case 5: {
+				finished = true;
+				break;
+			}
+			default: {
+				cout << "\n===Invalid choice===\n";
+				break;
+			}
+		}
+		if (finished) break;
+	}
+}
 
 
+template<class T>
+T* Admin::prepareCreateUserOfType(vector<T*>& storage) {
+	string name;
+	string email;
+	string password;
+	cout << "Enter name: ";
+	cin >> name;
+	cout << "Enter email: ";
+	cin >> email;
+	cout << "Enter password: ";
+	cin >> password;
+	return createUserOfType<T>(name, email, password, storage);
+}
+
+template<class T>
+bool Admin::prepareDeleteUserOfType(vector<T*>& storage) {
+	int id;
+	cout << "Enter ID: ";
+	cin >> id;
+	return deleteUserOfType<T>(id, storage);
+}

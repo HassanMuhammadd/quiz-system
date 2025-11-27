@@ -6,7 +6,7 @@ using namespace std;
 int main(){
 	App app;
 
-	Admin* admin = new Admin("admin", "admin", "admin");
+	Admin* admin = new Admin("a", "a", "a");
 
 	app.run();
 

@@ -19,11 +19,16 @@ class Student : public User {
 	int getId();
 	string getName();
 
-	void getQuizzes();
+	bool getQuizzes();
 	void startQuiz();
+	vector<string> solveQuizQuestions(Quiz* quiz);
 	void submitQuiz(int quizId, vector<string> answers);
+
 	void viewResultsInAQuiz(int quizId);
 	void viewResultsInAllQuizzes();
+
+	void displayMenu() override;
+
 
 	static std::vector<Student*>& getAllStudents();
 };

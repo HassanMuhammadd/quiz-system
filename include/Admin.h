@@ -16,10 +16,18 @@ class Admin : public User {
 	Admin(string name, string email, string password);
 
 	template<class T>
-	T& createUserOfType(string name, string email, string password, vector<T*>& storage);
+	T* createUserOfType(string name, string email, string password, vector<T*>& storage);
+
+	template<class T>
+	T* prepareCreateUserOfType(vector<T*>& storage);
 
 	template<class T>
 	bool deleteUserOfType(int id, vector<T*>& storage);
+
+	template<class T>
+	bool prepareDeleteUserOfType(vector<T*>& storage);
+
+	void displayMenu() override;
 
 	static vector<Admin*>& getAllAdmins();
 };

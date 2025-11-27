@@ -20,11 +20,19 @@ class Teacher : public User {
 	string getName();
 	vector<Quiz*>& getQuizzes();
 
-	Quiz& createQuiz(int timeLimitInMinutes, string title);
-	Quiz* editQuiz(int id, int timeLimitInMinutes, string title);
+	Quiz* createQuiz(int timeLimitInMinutes, string title, int year, int month, int day, int hour, int minute);
+	Quiz* editQuiz(int id, int timeLimitInMinutes, string title, int year, int month, int day, int hour, int minute);
 	bool deleteQuiz(int id);
 	void viewStudentsResults(int quizId);
+	void displayTeacherQuizzes();
+	void addQuestions(int id);
 
+	void displayMenu() override;
+
+	void prepareCreateQuiz();
+	void prepareEditQuiz();
+	void prepareDeleteQuiz();
+	void prepareViewStudentsResults();
 
 	static vector<Teacher*>& getAllTeachers();
 };
