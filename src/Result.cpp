@@ -23,7 +23,7 @@ void Result::setTotalScore(float totalScore) { this->totalScore = totalScore; }
 pair<float, float> Result::calculateScore(vector<Question*>& questions, vector<string> answers) {
 	float score = 0;
 	float totalScore = 0;
-	for (int i = 0; i < questions.size(); i++) {
+	for (int i = 0; i < min(questions.size(), answers.size()); i++) {
 		if (questions[i]->checkAnswer(answers[i])) {
 			score += questions[i]->getPoints();
 		}
@@ -46,11 +46,9 @@ void Result::displayResult() {
 
 Result* Result::findResult(int studentId, int quizId) {
 	for (Result *result : allResults) {
-		if (result->getStudentId() == studentId && result->getQuizId() == quizId) {
+		if (result->getStudentId() == studentId && result->getQuizId() == quizId)
 			return result;
-		}
 	}
-	cout << "\n===Result not found===\n";
 	return nullptr;
 }
 

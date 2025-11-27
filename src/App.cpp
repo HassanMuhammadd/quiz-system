@@ -24,21 +24,28 @@ void App::run() {
         cout << "1. Admin login" << endl;
         cout << "2. Teacher login" << endl;
         cout << "3. Student login" << endl;
+        cout << "4. Exit" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
 
         switch (choice) {
             case 1: {
                 Admin* a = takeLoginInput<Admin>(Admin::allAdmins);
+                a->displayMenu();
                 break;
             }
             case 2: {
                 Teacher* t = takeLoginInput<Teacher>(Teacher::allTeachers);
+                t->displayMenu();
                 break;
             }
             case 3: {
                 Student* s = takeLoginInput<Student>(Student::allStudents);
+                s->displayMenu();
                 break;
+            }
+            case 4: {
+                return;
             }
             default:
                 cout << "\n\nInvalid choice\n\n" << endl;

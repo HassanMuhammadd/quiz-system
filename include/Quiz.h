@@ -23,10 +23,11 @@ class Quiz {
 	public:
 	static vector<Quiz*> allQuizzes;
 
-	Quiz(int timeLimitInMinutes, string title);
+	Quiz(int timeLimitInMinutes, string title, int year, int month, int day, int hour, int minute);
 
 	system_clock::time_point getPublishAt();
 	int getId();
+	int getTimeLimitInMinutes();
 
 	void setTimeLimitInMinutes(int timeLimitInMinutes);
 	void setTitle(string title);
@@ -39,7 +40,7 @@ class Quiz {
 	void publishQuiz(int year, int month, int day, int hour, int minute);
 
 
-	Quiz& addQuestion(string text, float points);
+	Question* addQuestion(string text, float points);
 	Quiz& removeQuestion(int questionId);
 	vector<Question*>& getQuestions();
 

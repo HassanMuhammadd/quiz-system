@@ -35,6 +35,8 @@ protected:
 
 	bool checkPassword(string password);
 
+	virtual void displayMenu() = 0;
+
 	protected:
 	string hashPassword(string password);
 

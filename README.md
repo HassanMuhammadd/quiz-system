@@ -10,3 +10,6 @@
 
 To build:\
 `g++ -g src/*.cpp -o src/build/Debug/outDebug.exe -Iinclude`
+
+To run:\
+`src/build/Debug/outDebug.exe`

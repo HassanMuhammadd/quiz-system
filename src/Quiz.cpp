@@ -18,14 +18,15 @@ system_clock::time_point createTimePoint(int year, int month, int day, int hour,
 	return system_clock::from_time_t(timeT);
 }
 
-Quiz::Quiz(int timeLimitInMinutes, string title)
-	: id(nextId++), timeLimitInMinutes(timeLimitInMinutes), title(title) {
+Quiz::Quiz(int timeLimitInMinutes, string title, int year, int month, int day, int hour, int minute)
+	: id(nextId++), timeLimitInMinutes(timeLimitInMinutes), title(title), publishAt(createTimePoint(year, month, day, hour, minute)) {
 		allQuizzes.push_back(this);
 	}
 
 
 system_clock::time_point Quiz::getPublishAt() { return publishAt; }
 int Quiz::getId() { return id; }
+int Quiz::getTimeLimitInMinutes() { return timeLimitInMinutes; }
 
 vector<Quiz*>& Quiz::getAllQuizzes() { return allQuizzes; }
 
@@ -38,10 +39,10 @@ void Quiz::publishQuiz(int year, int month, int day, int hour, int minute) {
 }
 
 
-Quiz& Quiz::addQuestion(string text, float points) {
+Question* Quiz::addQuestion(string text, float points) {
 	Question *question = new Question(text, points);
 	questions.push_back(question);
-	return *this;
+	return question;
 }
 
 Quiz& Quiz::removeQuestion(int questionId) {
@@ -70,8 +71,10 @@ Quiz* Quiz::findQuiz(int id) {
 
 void Quiz::displayQuiz() {
 	time_t publishAt_timeT = system_clock::to_time_t(publishAt);
+	cout << "\n=======\n";
+	cout << "ID: " << id << endl;
 	cout << "Title: " << title << endl;
 	cout << "Time Limit: " << timeLimitInMinutes << " minutes" << endl;
-	cout << "Available At: " << publishAt_timeT << endl;
+	cout << "Available At: " << ctime(&publishAt_timeT) << endl;
 }
 
