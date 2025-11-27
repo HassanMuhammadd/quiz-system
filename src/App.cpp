@@ -16,7 +16,11 @@ T* App::doLogin(string email, string password, vector<T*>& users) {
     return nullptr;
 }
 
-
+void App::clearWrongInput(){
+    cin.clear();
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	cout << "\n===Invalid choice===\n";
+}
 
 void App::run() {
     int choice;
@@ -27,6 +31,11 @@ void App::run() {
         cout << "4. Exit" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
+
+        if(cin.fail()) {
+			App::clearWrongInput();
+			continue;
+		}
 
         switch (choice) {
             case 1: {
