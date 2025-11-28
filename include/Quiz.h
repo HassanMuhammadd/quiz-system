@@ -41,7 +41,7 @@ class Quiz {
 
 
 	Question* addQuestion(string text, float points);
-	Quiz& removeQuestion(int questionId);
+	bool removeQuestion(int questionNumber);
 	vector<Question*>& getQuestions();
 
 };

@@ -45,16 +45,15 @@ Question* Quiz::addQuestion(string text, float points) {
 	return question;
 }
 
-Quiz& Quiz::removeQuestion(int questionId) {
-	for (auto it = questions.begin(); it != questions.end(); ++it) {
-		if((*it)->getId() == questionId) {
-			questions.erase(it);
-			delete *it;
-			return *this;
+bool Quiz::removeQuestion(int questionNumber) {
+	for(int i = 0; i < questions.size(); i++) {
+		if(i + 1 == questionNumber) {
+			questions.erase(questions.begin() + i);
+			return true;
 		}
 	}
 	cout << "\n===Question not found===\n";
-	return *this;
+	return false;
 }
 
 vector<Question*>& Quiz::getQuestions() { return questions; }
