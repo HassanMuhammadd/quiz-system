@@ -2,3 +2,4 @@
 .vscode/*
 include/build
 src/build
+test/build
