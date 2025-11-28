@@ -23,12 +23,14 @@ void Result::setTotalScore(float totalScore) { this->totalScore = totalScore; }
 pair<float, float> Result::calculateScore(vector<Question*>& questions, vector<string> answers) {
 	float score = 0;
 	float totalScore = 0;
+
 	for (int i = 0; i < min(questions.size(), answers.size()); i++) {
 		if (questions[i]->checkAnswer(answers[i])) {
 			score += questions[i]->getPoints();
 		}
 		totalScore += questions[i]->getPoints();
 	}
+
 	setScore(score);
 	setTotalScore(totalScore);
 	return make_pair(score, totalScore);

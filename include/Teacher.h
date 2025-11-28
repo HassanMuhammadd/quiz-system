@@ -23,6 +23,8 @@ class Teacher : public User {
 	Quiz* createQuiz(int timeLimitInMinutes, string title, int year, int month, int day, int hour, int minute);
 	Quiz* editQuiz(int id, int timeLimitInMinutes, string title, int year, int month, int day, int hour, int minute);
 	bool deleteQuiz(int id);
+	bool deleteQuestion(int quizId, int questionNumber);
+
 	void viewStudentsResults(int quizId);
 	void displayTeacherQuizzes();
 	void addQuestions(int id);
@@ -33,6 +35,7 @@ class Teacher : public User {
 	void prepareEditQuiz();
 	void prepareDeleteQuiz();
 	void prepareViewStudentsResults();
+	void prepareDeleteQuestion(int id);
 
 	static vector<Teacher*>& getAllTeachers();
 };

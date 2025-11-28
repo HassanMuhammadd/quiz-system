@@ -143,7 +143,9 @@ void Teacher::prepareEditQuiz() {
 		return;
 	}
 
-	cout << "\n1. Update general info\n2. Add question\n";
+	cout << "\n1. Update general info\n";
+	cout << "2. Add question\n";
+	cout << "3. Delete question\n";
 	cin >> choice;
 
 	if(cin.fail()) {
@@ -180,6 +182,8 @@ void Teacher::prepareEditQuiz() {
 		}
 		else if(choice == 2) {
 			addQuestions(id);
+		} else if(choice == 3) {
+			prepareDeleteQuestion(id);
 		} else {
 			cout << "\n===Invalid choice===\n";
 		}
@@ -216,6 +220,32 @@ void Teacher::displayTeacherQuizzes() {
 		quiz->displayQuiz();
 		cout << "\n==========\n";
 	}
+}
+
+void Teacher::prepareDeleteQuestion(int id) {
+	// Display questions of the quiz
+	Quiz* quiz = Quiz::findQuiz(id);
+	if(quiz == nullptr) {
+		cout << "\n===Quiz not found===\n";
+		return;
+	}
+	cout << "Questions:\n";
+	vector<Question*>& questions = quiz->getQuestions();
+	for(int i = 0; i < questions.size(); i++) {
+		cout << i + 1 << ". " << questions[i]->getText();
+		cout << "\n==========\n";
+	}
+
+	int questionNumber;
+	cout << "Enter question number: ";
+	cin >> questionNumber;
+
+	if(cin.fail()) {
+		App::clearWrongInput();
+		return;
+	}
+	// questionNumber is 1-based
+	deleteQuestion(id, questionNumber);
 }
 
 void Teacher::addQuestions(int id) {
@@ -255,4 +285,12 @@ void Teacher::addQuestions(int id) {
 			question->addOption(optionText, isCorrect);
 		} while (optionText != "-1");
 	} while (text != "1");
+}
+
+bool Teacher::deleteQuestion(int quizId, int questionNumber) {
+	Quiz* quiz = Quiz::findQuiz(quizId);
+	if(quiz == nullptr) {
+		return false;
+	}
+	return quiz->removeQuestion(questionNumber);
 }
