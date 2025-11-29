@@ -116,5 +116,16 @@ All files are included in the repository.
 
 ```bash
 git clone https://github.com/HassanMuhammadd/quiz-system.git
-g++ main.cpp -o quiz_system
-./quiz_system
+g++ -g src/*.cpp -o src/build/Debug/outDebug.exe -Iinclude
+src/build/Debug/outDebug.exe
+```
+
+## <span style="color:#00AEEF;">How to Run tests</span>
+
+```bash
+git clone https://github.com/HassanMuhammadd/quiz-system.git
+g++ -std=c++17 -o test/build/test_runner test/test_main.cpp src/App.cpp src/User.cpp src/Student.cpp src/Teacher.cpp src/Admin.cpp src/Quiz.cpp src/Question.cpp src/Option.cpp src/Result.cpp -I./include
+./test/build/test_runner
+```
+
+
