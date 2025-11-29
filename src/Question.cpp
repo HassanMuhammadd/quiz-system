@@ -32,3 +32,12 @@ vector<string> Question::getOptions() {
 	}
 	return optionsText;
 }
+
+bool Question::hasCorrectOption() {
+		for (const Option *option : options) {
+				if (option->isCorrect()) {
+						return true;
+				}
+		}
+		return false;
+}
