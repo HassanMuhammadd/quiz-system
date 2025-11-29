@@ -26,6 +26,7 @@ class Question {
 	vector<string> getOptions();
 
 	~Question();
+	bool hasCorrectOption();
 };
 
 #endif // QUESTION_H

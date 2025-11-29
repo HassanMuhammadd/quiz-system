@@ -38,3 +38,12 @@ Question::~Question() {
 		delete *it;
 	}
 }
+
+bool Question::hasCorrectOption() {
+		for (const Option *option : options) {
+				if (option->isCorrect()) {
+						return true;
+				}
+		}
+		return false;
+}

@@ -256,6 +256,7 @@ void Teacher::addQuestions(int id) {
 	}
 	string text;
 	float score;
+	int questionCount = 1;
 	do {
 		cout << "Enter question text (-1 to stop adding questions): ";
 		cin.ignore();
@@ -284,6 +285,17 @@ void Teacher::addQuestions(int id) {
 
 			question->addOption(optionText, isCorrect);
 		} while (optionText != "-1");
+
+		// Commented to show a failing test case
+
+		//if(!question->hasCorrectOption()) {
+		//	cout << "\n===No correct option===\n";
+		//	quiz->removeQuestion(questionCount);
+		//	delete question;
+		//	continue;
+		//}
+		questionCount++;
+
 	} while (text != "1");
 }
 
