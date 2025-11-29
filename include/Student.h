@@ -31,6 +31,8 @@ class Student : public User {
 
 
 	static std::vector<Student*>& getAllStudents();
+
+	~Student();
 };
 
 #endif // STUDENT_H

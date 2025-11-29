@@ -1,6 +1,7 @@
 #include "test_auth.cpp"
 #include "test_quiz.cpp"
 #include "test_utilities.cpp"
+#include "test_question.cpp"
 #include <iostream>
 
 using namespace std;
@@ -9,14 +10,13 @@ int main() {
     cout << "===========Quiz System Test Suite===========\n" << endl;
 
     try {
-        // Run authentication tests
         runAllAuthTests();
 
-        // Run quiz deletion tests
         runAllQuizTests();
 
-        // Run utility tests
         runAllUtilityTests();
+
+        runAllQuestionTests();
 
         cout << "\n===========ALL TESTS PASSED===========\n" << endl;
 

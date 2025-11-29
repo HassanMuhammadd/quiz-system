@@ -42,6 +42,8 @@ class Result {
 	static Result* findResult(int studentId, int quizId);
 	static vector<Result*> findQuizResults(int quizId);
 	static vector<Result*> findStudentResults(int studentId);
+
+	~Result();
 };
 
 #endif // RESULT_H

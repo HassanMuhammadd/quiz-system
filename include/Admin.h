@@ -30,6 +30,8 @@ class Admin : public User {
 	void displayMenu() override;
 
 	static vector<Admin*>& getAllAdmins();
+
+	~Admin();
 };
 
 #endif // ADMIN_H

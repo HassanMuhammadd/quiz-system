@@ -38,6 +38,8 @@ class Teacher : public User {
 	void prepareDeleteQuestion(int id);
 
 	static vector<Teacher*>& getAllTeachers();
+
+	~Teacher();
 };
 
 #endif // TEACHER_H

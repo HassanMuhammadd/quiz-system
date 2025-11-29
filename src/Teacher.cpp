@@ -294,3 +294,15 @@ bool Teacher::deleteQuestion(int quizId, int questionNumber) {
 	}
 	return quiz->removeQuestion(questionNumber);
 }
+
+Teacher::~Teacher() {
+	for (auto it = quizzes.begin(); it != quizzes.end(); ++it) {
+		delete *it;
+	}
+	for (auto it = Teacher::allTeachers.begin(); it != Teacher::allTeachers.end(); ++it) {
+		if (*it == this) {
+			Teacher::allTeachers.erase(it);
+			break;
+		}
+	}
+}

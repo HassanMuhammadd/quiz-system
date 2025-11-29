@@ -203,3 +203,13 @@ void Student::displayMenu() {
 		if (finished) break;
 	}
 }
+
+
+Student::~Student() {
+	for (auto it = Student::allStudents.begin(); it != Student::allStudents.end(); ++it) {
+		if (*it == this) {
+			Student::allStudents.erase(it);
+			break;
+		}
+	}
+}

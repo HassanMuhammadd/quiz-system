@@ -114,3 +114,12 @@ bool Admin::prepareDeleteUserOfType(vector<T*>& storage) {
 
 	return deleteUserOfType<T>(id, storage);
 }
+
+Admin::~Admin() {
+	for (auto it = Admin::getAllAdmins().begin(); it != Admin::getAllAdmins().end(); ++it) {
+		if (*it == this) {
+			Admin::getAllAdmins().erase(it);
+			break;
+		}
+	}
+}

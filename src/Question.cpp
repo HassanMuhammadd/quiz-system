@@ -32,3 +32,9 @@ vector<string> Question::getOptions() {
 	}
 	return optionsText;
 }
+
+Question::~Question() {
+	for (auto it = options.begin(); it != options.end(); ++it) {
+		delete *it;
+	}
+}

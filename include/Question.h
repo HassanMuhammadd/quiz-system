@@ -24,6 +24,8 @@ class Question {
 	int getId();
 
 	vector<string> getOptions();
+
+	~Question();
 };
 
 #endif // QUESTION_H

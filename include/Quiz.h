@@ -44,6 +44,7 @@ class Quiz {
 	bool removeQuestion(int questionNumber);
 	vector<Question*>& getQuestions();
 
+	~Quiz();
 };
 
 #endif // QUIZ_H

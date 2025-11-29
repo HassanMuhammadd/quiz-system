@@ -73,3 +73,12 @@ vector<Result*> Result::findStudentResults(int studentId) {
 	}
 	return results;
 }
+
+Result::~Result() {
+	for (auto it = Result::allResults.begin(); it != Result::allResults.end(); ++it) {
+		if (*it == this) {
+			Result::allResults.erase(it);
+			break;
+		}
+	}
+}

@@ -77,3 +77,16 @@ void Quiz::displayQuiz() {
 	cout << "Available At: " << ctime(&publishAt_timeT) << endl;
 }
 
+
+
+Quiz::~Quiz() {
+	for(auto it = questions.begin(); it != questions.end(); ++it) {
+		delete *it;
+	}
+	for (auto it = Quiz::getAllQuizzes().begin(); it != Quiz::getAllQuizzes().end(); ++it) {
+		if (*it == this) {
+			Quiz::getAllQuizzes().erase(it);
+			break;
+		}
+	}
+}
