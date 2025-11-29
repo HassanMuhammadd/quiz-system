@@ -24,6 +24,8 @@ class Question {
 	int getId();
 
 	vector<string> getOptions();
+
+	bool hasCorrectOption();
 };
 
 #endif // QUESTION_H
